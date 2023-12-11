@@ -28,4 +28,18 @@ std::shared_ptr<Student> Database::searchByPESEL(const std::string& PESEL) const
     return nullptr;
 }
 
+std::vector<std::shared_ptr<Student>> Database::sortStudentsByPESEL() const {
+    std::vector<std::shared_ptr<Student>> sortedStudents(studentsDb_);
 
+    std::sort(sortedStudents.begin(), sortedStudents.end(), [](auto s1, auto s2) { return s1->getPESEL() < s2->getPESEL(); });
+
+    return sortedStudents;
+}
+
+std::vector<std::shared_ptr<Student>> Database::sortStudentsBySurname() const {
+    std::vector<std::shared_ptr<Student>> sortedStudents(studentsDb_);
+
+    std::sort(sortedStudents.begin(), sortedStudents.end(), [](auto s1, auto s2) { return s1->getSurname() < s2->getSurname(); });
+
+    return sortedStudents;
+};

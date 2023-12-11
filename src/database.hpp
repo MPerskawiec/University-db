@@ -11,9 +11,10 @@ private:
 
 public:
     Database();
-
     void addStudent(std::shared_ptr<Student> student);
     std::vector<std::shared_ptr<Student>> getStudents() const;
     std::vector<std::shared_ptr<Student>> searchBySurname(const std::string& surname) const;
     std::shared_ptr<Student> searchByPESEL(const std::string& PESEL) const;
+    std::vector<std::shared_ptr<Student>> sortStudentsByPESEL() const;
+    std::vector<std::shared_ptr<Student>> sortStudentsBySurname() const;
 };
