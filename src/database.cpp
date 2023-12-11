@@ -19,3 +19,13 @@ std::vector<std::shared_ptr<Student>> Database::searchBySurname(const std::strin
     return studentsBySurname;
 }
 
+std::shared_ptr<Student> Database::searchByPESEL(const std::string& PESEL) const {
+    for (const auto& student : studentsDb_) {
+        if (PESEL == student->getPESEL()) {
+            return student;
+        }
+    }
+    return nullptr;
+}
+
+

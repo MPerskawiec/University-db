@@ -51,3 +51,16 @@ TEST_F(databaseOperation, SearchStudentsBySurname){
   ASSERT_EQ("Pawlak", searchStudent[0]->getSurname());
   ASSERT_EQ(1, searchStudent.size());
 } 
+
+TEST_F(databaseOperation, SearchStudentsByPESEL){
+  // GIVEN
+
+  // WHEN 
+  auto searchStudent1 = studentsDb.searchByPESEL("111");
+  auto searchStudent2 = studentsDb.searchByPESEL("99042006789");
+
+  // THEN
+  ASSERT_EQ(nullptr, searchStudent1);
+  ASSERT_EQ("Polak", searchStudent2->getSurname());
+
+} 
