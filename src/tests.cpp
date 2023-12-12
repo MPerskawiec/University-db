@@ -25,7 +25,7 @@ TEST_F(databaseOperation, AddStudentsToDatabase) {
     // THEN
     ASSERT_EQ("Mariusz", db[0]->getName());
     ASSERT_EQ("Polak", db[0]->getSurname());
-    ASSERT_EQ("Polna 1, 62-860 Opa", db[0]->getAdress());
+    ASSERT_EQ("Polna 1, 62-860 Opa", db[0]->getAddress());
     ASSERT_EQ(111, db[0]->getIndexNumber());
     ASSERT_EQ("98042006789", db[0]->getPESEL());
     ASSERT_EQ(Gender::Male, db[0]->getGender());

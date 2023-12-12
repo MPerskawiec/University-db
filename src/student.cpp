@@ -1,9 +1,9 @@
 #include "student.hpp"
 
-Student::Student(const std::string& name, const std::string& surname, const std::string& adress, const int& indexNumber, const std::string& PESEL, const Gender& gender)
+Student::Student(const std::string& name, const std::string& surname, const std::string& address, const int& indexNumber, const std::string& PESEL, const Gender& gender)
     : name_(name),
       surname_(surname),
-      adress_(adress),
+      address_(address),
       indexNumber_(indexNumber),
       PESEL_(PESEL),
       gender_(gender) {}
@@ -14,8 +14,8 @@ std::string Student::getName() const {
 std::string Student::getSurname() const {
     return surname_;
 }
-std::string Student::getAdress() const {
-    return adress_;
+std::string Student::getAddress() const {
+    return address_;
 }
 int Student::getIndexNumber() const {
     return indexNumber_;

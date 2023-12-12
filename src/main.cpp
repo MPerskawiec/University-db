@@ -1,8 +1,13 @@
 #include <iostream>
 #include "database.hpp"
 #include "student.hpp"
+#include "userinterface.hpp"
 
 int main() {
-    std::cout << "Hello world \n";
+    Database database;
+    UserInterface userInterface(database);
+
+    userInterface.run();
+
     return 0;
 }
