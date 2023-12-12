@@ -10,6 +10,10 @@ std::vector<std::shared_ptr<Student>> Database::getStudents() const {
     return studentsDb_;
 }
 
+size_t Database::getNumberOfStudents() const {
+    return studentsDb_.size();
+}
+
 std::vector<std::shared_ptr<Student>> Database::searchBySurname(const std::string& surname) const {
     std::vector<std::shared_ptr<Student>> studentsBySurname;
 
@@ -43,3 +47,10 @@ std::vector<std::shared_ptr<Student>> Database::sortStudentsBySurname() const {
 
     return sortedStudents;
 };
+
+void Database::removeStudentByIndexNumber(const int& number) {
+    studentsDb_.erase(std::remove_if(studentsDb_.begin(), studentsDb_.end(), [&number](auto student) {
+                          return student->getIndexNumber() == number;
+                      }),
+                      studentsDb_.end());
+}

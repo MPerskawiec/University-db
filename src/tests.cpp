@@ -86,3 +86,16 @@ TEST_F(databaseOperation, SortStudentsBySurname) {
     ASSERT_EQ("Pawlak", sortedStudents[0]->getSurname());
     ASSERT_EQ("Znak", sortedStudents[3]->getSurname());
 }
+
+TEST_F(databaseOperation, RemoveStudentByIndexNumber) {
+    // GIVEN
+
+    // WHEN
+    studentsDb.removeStudentByIndexNumber(111);
+    std::vector<std::shared_ptr<Student>> db = studentsDb.getStudents();
+
+    // THEN
+    ASSERT_EQ(112, db[0]->getIndexNumber());
+    ASSERT_EQ(113, db[1]->getIndexNumber());
+    ASSERT_EQ(2, studentsDb.getNumberOfStudents());
+}
