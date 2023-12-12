@@ -35,7 +35,7 @@ std::shared_ptr<Student> Database::searchByPESEL(const std::string& PESEL) const
 std::vector<std::shared_ptr<Student>> Database::sortStudentsByPESEL() const {
     std::vector<std::shared_ptr<Student>> sortedStudents(studentsDb_);
 
-    std::sort(sortedStudents.begin(), sortedStudents.end(), [](auto s1, auto s2) { return s1->getPESEL() < s2->getPESEL(); });
+    std::sort(sortedStudents.begin(), sortedStudents.end(), [](auto s1, auto s2) { return std::stoi(s1->getPESEL()) < std::stoi(s2->getPESEL()); });
 
     return sortedStudents;
 }

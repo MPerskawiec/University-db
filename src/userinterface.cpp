@@ -145,7 +145,6 @@ void UserInterface::searchByPESEL() {
 
 void UserInterface::removeStudentByIndexNumber() {
     int indexNumber;
-cd ..
     std::cout << "Enter student's index number: ";
     std::cin >> indexNumber;
 
