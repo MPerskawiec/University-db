@@ -2,7 +2,7 @@
 
 void UserInterface::run() {
     int choice;
-    std::vector<std::shared_ptr<Student>> sortedStudents;
+    std::vector<std::shared_ptr<Person>> sortedStudents;
     do {
         std::cout << "\n***************************\n"; 
         displayMenu();
@@ -68,7 +68,7 @@ void UserInterface::displayStudents() const {
     }
 }
 
-void UserInterface::displayStudents(std::vector<std::shared_ptr<Student>> students) const {
+void UserInterface::displayStudents(std::vector<std::shared_ptr<Person>> students) const {
     if (students.size() == 0) {
         std::cout << "The student database is empty!!!\n";
     } else {
@@ -78,14 +78,14 @@ void UserInterface::displayStudents(std::vector<std::shared_ptr<Student>> studen
     }
 }
 
-void UserInterface::displayStudent(std::shared_ptr<Student> student) const {
+void UserInterface::displayStudent(std::shared_ptr<Person> student) const {
     if (student == nullptr) {
         std::cout << "Student not found! \n";
     } else {
         std::cout << "Name: " << student->getName() << "\n";
         std::cout << "Surname: " << student->getSurname() << "\n";
         std::cout << "Adress: " << student->getAddress() << "\n";
-        std::cout << "Index number: " << student->getIndexNumber() << "\n";
+    //    std::cout << "Index number: " << student->getIndexNumber() << "\n";
         std::cout << "PESEL: " << student->getPESEL() << "\n";
         std::cout << "Gender: " << ((student->getGender() == Gender::Male) ? "Male" : "Female")
                   << "\n\n";
@@ -119,7 +119,8 @@ void UserInterface::addStudent() {
     std::cin >> genderInput;
     gender = (genderInput == 0) ? Gender::Male : Gender::Female;
 
-    auto student = std::make_shared<Student>(name, surname, address, indexNumber, PESEL, gender);
+    auto student = std::make_shared<Student>(name, surname, address,  PESEL, gender, indexNumber);
+    
     database_.addStudent(student);
 }
 

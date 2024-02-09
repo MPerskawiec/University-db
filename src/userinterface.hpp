@@ -1,4 +1,6 @@
 #pragma once
+
+#include "person.hpp"
 #include "student.hpp"
 #include "database.hpp"
 
@@ -10,8 +12,8 @@ private:
 
     void displayMenu() const;
     void displayStudents() const;
-    void displayStudents(std::vector<std::shared_ptr<Student>> students) const;
-    void displayStudent(std::shared_ptr<Student> student) const;
+    void displayStudents(std::vector<std::shared_ptr<Person>> students) const;
+    void displayStudent(std::shared_ptr<Person> student) const;
     void addStudent();
     void searchBySurname();
     void searchByPESEL();

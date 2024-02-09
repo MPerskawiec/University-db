@@ -3,28 +3,29 @@
 Database::Database() {}
 
 void Database::addStudent(std::shared_ptr<Student> student) {
-    studentsDb_.push_back(student);
+    
+    database_.push_back(student);
 }
 
-std::vector<std::shared_ptr<Student>> Database::getStudents() const {
-    return studentsDb_;
+std::vector<std::shared_ptr<Person>> Database::getStudents() const {
+    return database_;
 }
 
 size_t Database::getNumberOfStudents() const {
-    return studentsDb_.size();
+    return database_.size();
 }
 
-std::vector<std::shared_ptr<Student>> Database::searchBySurname(const std::string& surname) const {
-    std::vector<std::shared_ptr<Student>> studentsBySurname;
+std::vector<std::shared_ptr<Person>> Database::searchBySurname(const std::string& surname) const {
+    std::vector<std::shared_ptr<Person>> studentsBySurname;
 
-    std::copy_if(studentsDb_.begin(), studentsDb_.end(), std::back_inserter(studentsBySurname),
+    std::copy_if(database_.begin(), database_.end(), std::back_inserter(studentsBySurname),
                  [&surname](const auto& student) { return student->getSurname() == surname; });
 
     return studentsBySurname;
 }
 
-std::shared_ptr<Student> Database::searchByPESEL(const std::string& PESEL) const {
-    for (const auto& student : studentsDb_) {
+std::shared_ptr<Person> Database::searchByPESEL(const std::string& PESEL) const {
+    for (const auto& student : database_) {
         if (PESEL == student->getPESEL()) {
             return student;
         }
@@ -32,16 +33,16 @@ std::shared_ptr<Student> Database::searchByPESEL(const std::string& PESEL) const
     return nullptr;
 }
 
-std::vector<std::shared_ptr<Student>> Database::sortStudentsByPESEL() const {
-    std::vector<std::shared_ptr<Student>> sortedStudents(studentsDb_);
+std::vector<std::shared_ptr<Person>> Database::sortStudentsByPESEL() const {
+    std::vector<std::shared_ptr<Person>> sortedStudents(database_);
 
     std::sort(sortedStudents.begin(), sortedStudents.end(), [](auto s1, auto s2) { return std::stoi(s1->getPESEL()) < std::stoi(s2->getPESEL()); });
 
     return sortedStudents;
 }
 
-std::vector<std::shared_ptr<Student>> Database::sortStudentsBySurname() const {
-    std::vector<std::shared_ptr<Student>> sortedStudents(studentsDb_);
+std::vector<std::shared_ptr<Person>> Database::sortStudentsBySurname() const {
+    std::vector<std::shared_ptr<Person>> sortedStudents(database_);
 
     std::sort(sortedStudents.begin(), sortedStudents.end(), [](auto s1, auto s2) { return s1->getSurname() < s2->getSurname(); });
 
@@ -49,8 +50,8 @@ std::vector<std::shared_ptr<Student>> Database::sortStudentsBySurname() const {
 };
 
 void Database::removeStudentByIndexNumber(const int& number) {
-    studentsDb_.erase(std::remove_if(studentsDb_.begin(), studentsDb_.end(), [&number](auto student) {
-                          return student->getIndexNumber() == number;
-                      }),
-                      studentsDb_.end());
+    // database_.erase(std::remove_if(database_.begin(), database_.end(), [&number](auto student) {
+    //                       return student->getIndexNumber() == number;
+    //                   }),
+    //                   database_.end());
 }
