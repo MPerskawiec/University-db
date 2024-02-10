@@ -26,3 +26,7 @@ Gender Person::getGender() const {
 Position Person::getPosition() const {
     return position_;
 }
+
+int Person::getIndexNumber() const{
+    return 0;
+ }

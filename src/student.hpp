@@ -13,6 +13,6 @@ private:
 public:
     Student(const std::string& name, const std::string& surname, const std::string& address, const std::string& PESEL, const Gender& gender, const int& indexNumber);
 
-    int getIndexNumber() const;
+    int getIndexNumber() const override;
 
 };

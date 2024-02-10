@@ -2,9 +2,9 @@
 
 void UserInterface::run() {
     int choice;
-    std::vector<std::shared_ptr<Person>> sortedStudents;
+    std::vector<std::shared_ptr<Person>> sortedPersons;
     do {
-        std::cout << "\n***************************\n"; 
+        std::cout << "\n***************************\n";
         displayMenu();
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -16,7 +16,7 @@ void UserInterface::run() {
             addStudent();
             break;
         case 2:
-            displayStudents();
+            displayPersons();
             break;
         case 3:
             searchBySurname();
@@ -25,12 +25,12 @@ void UserInterface::run() {
             searchByPESEL();
             break;
         case 5:
-            sortedStudents = database_.sortStudentsByPESEL();
-            displayStudents(sortedStudents);
+            sortedPersons = database_.sortStudentsByPESEL();
+            displayPersons(sortedPersons);
             break;
         case 6:
-            sortedStudents = database_.sortStudentsBySurname();
-            displayStudents(sortedStudents);
+            sortedPersons = database_.sortStudentsBySurname();
+            displayPersons(sortedPersons);
             break;
         case 7:
             removeStudentByIndexNumber();
@@ -56,39 +56,39 @@ void UserInterface::displayMenu() const {
     std::cout << "8. Exit\n";
 }
 
-void UserInterface::displayStudents() const {
+void UserInterface::displayPersons() const {
     auto students = database_.getStudents();
 
     if (students.size() == 0) {
         std::cout << "The student database is empty!!!\n";
     } else {
         for (const auto& student : students) {
-            displayStudent(student);
+            displayPerson(student);
         }
     }
 }
 
-void UserInterface::displayStudents(std::vector<std::shared_ptr<Person>> students) const {
+void UserInterface::displayPersons(std::vector<std::shared_ptr<Person>> students) const {
     if (students.size() == 0) {
         std::cout << "The student database is empty!!!\n";
     } else {
         for (const auto& student : students) {
-            displayStudent(student);
+            displayPerson(student);
         }
     }
 }
 
-void UserInterface::displayStudent(std::shared_ptr<Person> student) const {
-    if (student == nullptr) {
-        std::cout << "Student not found! \n";
-    } else {
-        std::cout << "Name: " << student->getName() << "\n";
-        std::cout << "Surname: " << student->getSurname() << "\n";
-        std::cout << "Adress: " << student->getAddress() << "\n";
-    //    std::cout << "Index number: " << student->getIndexNumber() << "\n";
-        std::cout << "PESEL: " << student->getPESEL() << "\n";
-        std::cout << "Gender: " << ((student->getGender() == Gender::Male) ? "Male" : "Female")
-                  << "\n\n";
+void UserInterface::displayPerson(std::shared_ptr<Person> person) const {
+
+    std::cout << "Name: " << person->getName() << "\n";
+    std::cout << "Surname: " << person->getSurname() << "\n";
+    std::cout << "Adress: " << person->getAddress() << "\n";
+    std::cout << "PESEL: " << person->getPESEL() << "\n";
+    std::cout << "Gender: " << ((person->getGender() == Gender::Male) ? "Male" : "Female") << "\n";
+    std::cout << "Position: " << ((person->getPosition() == Position::Employee) ? "Employee" : "Student") << "\n";
+
+    if (person->getPosition() == Position::Student) {
+        std::cout << "Index number: " << person->getIndexNumber() << "\n\n";
     }
 }
 
@@ -119,9 +119,7 @@ void UserInterface::addStudent() {
     std::cin >> genderInput;
     gender = (genderInput == 0) ? Gender::Male : Gender::Female;
 
-    auto student = std::make_shared<Student>(name, surname, address,  PESEL, gender, indexNumber);
-    
-    database_.addStudent(student);
+    database_.addStudent(name, surname, address, PESEL, gender, indexNumber);
 }
 
 void UserInterface::searchBySurname() {
@@ -130,8 +128,8 @@ void UserInterface::searchBySurname() {
     std::cout << "Enter student's surname: ";
     std::cin >> surname;
 
-    auto students = database_.searchBySurname(surname);
-    displayStudents(students);
+    auto persons = database_.searchBySurname(surname);
+    displayPersons(persons);
 }
 
 void UserInterface::searchByPESEL() {
@@ -140,8 +138,8 @@ void UserInterface::searchByPESEL() {
     std::cout << "Enter student's PESEL: ";
     std::cin >> PESEL;
 
-    auto student = database_.searchByPESEL(PESEL);
-    displayStudent(student);
+    auto person = database_.searchByPESEL(PESEL);
+    displayPerson(person);
 }
 
 void UserInterface::removeStudentByIndexNumber() {

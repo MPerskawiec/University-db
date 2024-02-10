@@ -30,4 +30,8 @@ public:
     std::string getPESEL() const;
     Gender getGender() const;
     Position getPosition() const;
+    virtual int getIndexNumber() const;
+
+
+    virtual ~Person() = default;
 };

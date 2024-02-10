@@ -11,9 +11,9 @@ private:
     Database& database_;
 
     void displayMenu() const;
-    void displayStudents() const;
-    void displayStudents(std::vector<std::shared_ptr<Person>> students) const;
-    void displayStudent(std::shared_ptr<Person> student) const;
+    void displayPersons() const;
+    void displayPersons(std::vector<std::shared_ptr<Person>> students) const;
+    void displayPerson(std::shared_ptr<Person> person) const;
     void addStudent();
     void searchBySurname();
     void searchByPESEL();
