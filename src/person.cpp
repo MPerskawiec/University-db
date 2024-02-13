@@ -30,3 +30,7 @@ Position Person::getPosition() const {
 int Person::getIndexNumber() const{
     return 0;
  }
+
+ int Person::getSalary() const{
+    return 0;
+ }

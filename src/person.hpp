@@ -31,6 +31,7 @@ public:
     Gender getGender() const;
     Position getPosition() const;
     virtual int getIndexNumber() const;
+    virtual int getSalary() const;
 
 
     virtual ~Person() = default;
